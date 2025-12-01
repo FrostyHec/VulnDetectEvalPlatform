@@ -1,0 +1,16 @@
+name: adaptourds
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy
+  - scikit-learn
+  - pip
+
+# Note: PyTorch (`torch`/`torchvision`) is intentionally NOT included here to
+# avoid conda running a large pip install during `conda env create` which may
+# hang or take a long time depending on network/CUDA-specific wheels.
+# To install PyTorch, either:
+#  - Run inside the activated env: `pip3 install torch torchvision` (recommended)
+#  - Or run the helper script: `scripts/init_env.sh --install-torch`
