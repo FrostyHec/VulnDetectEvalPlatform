@@ -3,10 +3,44 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.10
-  - numpy
-  - scikit-learn
-  - pip
+    # ── Core ───────────────────────────────────────────────────────────────────
+  - python =3.10           # C-Python 3.10.x
+  - pip                    # keep in case you need PyPI wheels
+
+  # ── Deep-Learning / HF stack (no torch itself) ────────────────────────────
+  - pandas                 # dataframes, CSV I/O, data manipulation
+  - numpy >=1.24           # math
+  - scipy                  # scientific computing
+  - scikit-learn           # classical ML
+  - transformers >=4.36.0  # HF Transformers
+  - accelerate             # HF Accelerate
+  - datasets               # HF Datasets
+  - tokenizers             # Required by transformers
+  - huggingface_hub        # Hub interactions
+  - safetensors            # Fast tensor serialization
+  - fsspec                 # Filesystem abstraction
+  - filelock               # Used internally by HF libs
+  - jinja2                 # for template utils in transformers
+  - tqdm                   # progress bars
+  - optree                 # used by accelerate +/or other libs
+  - typing-extensions      # runtime typing helpers
+  - sympy                  # required by torch.compile / torch.fx passes
+  - networkx               # used by fx, torchvision, etc.
+
+  # ── Misc / utilities ─────────────────────────────────────────────────────
+  - psutil                 # system / memory stats
+  - regex                  # better regex (HF tokenizers fallback)
+  - requests               # HTTP utils
+  - accelerate             # already above, left here for clarity
+  - pytorch-ignite         # training loops, metrics, etc. 
+
+  # ── Keep pip for PyTorch or extra wheels ─────────────────────────────────
+  - pip:
+      # PyPI-only extras you know you’ll need.  Examples:
+      # - wandb>=0.16
+      # - hf-xet==1.2.0
+      # Leave blank if none for now.
+      - hf-xet==1.2.0
 
 # Note: PyTorch (`torch`/`torchvision`) is intentionally NOT included here to
 # avoid conda running a large pip install during `conda env create` which may

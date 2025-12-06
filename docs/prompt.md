@@ -1,0 +1,15 @@
+我现在计划adapt iris工具到dataset_patch数据集；我目前已经在数据集中做了一些工作（比如clone了repo以及记录了uln/fix commit；不过适配iris仍需要进一步计划，你需要列举一个详细记得计划，分析需求，目前dataset_patch数据集的格式，iris的接受的输入输出，适配计划，以及适配过程中存在的技术困难和解决方案；计划必须创建在docs中的adapt-iris-plan.md文档
+
+我思考中可能的技术挑战：
+1. cwe_match和dataset_patch的漏洞不是完全一一映射的，因此可以参考@dataset/dataset_patch/cwe-match.json 进行映射
+2. iris需要跑codeql，但目前iris只支持java的codeql，更糟糕的是java的codeql需要成功编译项目才能通过；可以先聚焦于java项目，并且尝试写一些工具或者之类的记录构建信息方法使得脚本可以格式化构建；可能同时需要创建 项目构建信息/格式化提取脚本，以及调整iris原有构建方法
+3. python和nodejs看起来虽然也需要codeql，但是不用编译可能相对容易，唯一的挑战是iris似乎没有这些工程的codeql query语句，因此需要follow他们的方法，从网上拿codeql模板并进行构建
+4. 现在origin_tools中iris我感觉和现有数据集格式差异有点大，因此还需要大量的适配，感觉重写更合适，但是会担心重写造成不严格match原有工具，因此请审慎评估进行重写，同时对于核心loop可以考虑复制代码文件，最小化修改，保证修改是合理的也不影响核心工作流程（符合核心工作流程应该就可以）（你需要inspect可能的冲突和差异并确定修改方案）
+5. 当前环境中似乎没有codeql，需要想办法装上@README.md 
+
+（还有很多其他的挑战需要你仔细思考）
+我的需求：
+1. 不必全部适配，允许只挑选一部分cwe/漏洞类型进行适配
+2. 但我依旧希望能够比较大coverage能够覆盖到较多的testcases（不能只允许三五个case这种这样太离谱）
+
+你需要收集理解当前仓库信息，充分理解并且进行详细的计划

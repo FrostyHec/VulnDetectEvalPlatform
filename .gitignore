@@ -15,3 +15,9 @@ dataset
 origin_tools
 ___temp
 logs
+output
+tools
+
+# Iris config
+src/adapted_tools/iris/config.py
+src/adapted_tools/iris/results

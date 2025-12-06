@@ -1,0 +1,5 @@
+torch>=2.0.0
+transformers>=4.30.0
+pytorch-ignite>=0.4.13
+scikit-learn>=1.0.0
+accelerate>=0.20.0
